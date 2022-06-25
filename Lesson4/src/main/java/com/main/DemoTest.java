@@ -23,10 +23,12 @@ public class DemoTest {
 //        Employee emp12 = (Employee) f1.getBean("emp2");
 //        emp12.display();
 
-        Employee emp3 = (Employee) f1.getBean("emp1");
+        Employee emp3 = (Employee) f1.getBean("emp3");
         System.out.println(emp3);
 
-        Employee emp4 = (Employee) f1.getBean("emp3");
+        Employee emp4 = (Employee) f1.getBean("emp4");
         System.out.println(emp4);
+        Employee emp5 = (Employee) f1.getBean("emp5");
+        System.out.println(emp5);
     }
 }
