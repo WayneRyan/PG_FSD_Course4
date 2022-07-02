@@ -1,9 +1,11 @@
 package com;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope(scopeName = "")
 public class Employee {
     private int id;
     private String name;
