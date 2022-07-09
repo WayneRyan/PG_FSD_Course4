@@ -8,6 +8,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello">Click Here</a>
+<a href="hello">Click Here</a><br>
+<a href="login.jsp">Login</a>
 </body>
 </html>
