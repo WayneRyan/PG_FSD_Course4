@@ -21,5 +21,13 @@ public class UserController {
         String user_id = request.getParameter("user_id");
         ModelAndView mav = new ModelAndView();
         User user = userService.getUser(user_id);
+        if (user == null){
+            mav.addObject("msg","User not found");
+            mav.setViewName("index.jsp");
+        } else {
+            mav.addObject("user", user);
+            mav.setViewName("editUser.jsp");
+        }
+        return mav;
     }
 }
