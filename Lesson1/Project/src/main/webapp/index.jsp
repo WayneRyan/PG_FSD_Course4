@@ -5,6 +5,7 @@
     <title>Updating User Information</title>
 </head>
 <body>
+${requestScope.msg}
 <h1>Select user to update</h1>
 <form action="selectUser" method="post">
     <label>User ID</label>

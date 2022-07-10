@@ -14,4 +14,8 @@ public class UserService {
     public User getUser(String user_id) {
         return userDao.getUser(user_id);
     }
+
+    public boolean updateUser(User user) {
+        return userDao.saveOrUpdate(user);
+    }
 }

@@ -30,4 +30,20 @@ public class UserController {
         }
         return mav;
     }
+
+    @RequestMapping(value = "editUser", method = RequestMethod.POST)
+    public ModelAndView editUser(HttpServletRequest request){
+        ModelAndView mav = new ModelAndView();
+        User user = new User();
+        user.setUser_id(request.getParameter("user_id"));
+        user.setName(request.getParameter("name"));
+        user.setPassword(request.getParameter("password"));
+        if (userService.updateUser(user)){
+            mav.addObject("msg", "User successfully updated");
+        } else {
+            mav.addObject("msg", "Something went wrong");
+        }
+        mav.setViewName("index.jsp");
+        return mav;
+    }
 }
