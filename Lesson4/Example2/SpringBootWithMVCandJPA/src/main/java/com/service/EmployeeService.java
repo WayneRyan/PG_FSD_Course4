@@ -5,6 +5,8 @@ import com.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
     @Autowired
@@ -34,5 +36,13 @@ public class EmployeeService {
         } else {
             return "Salary didn't update";
         }
+    }
+
+    public String deleteEmployeeRecord(int id) {
+        return employeeDao.deleteEmployeeInfo(id) >0 ? "Employee deleted successfully" : "No employee with that id";
+    }
+
+    public List<Employee> getAllEmployees(){
+        return employeeDao.getAllEmployee();
     }
 }

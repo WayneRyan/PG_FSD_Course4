@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class EmployeeDao {
@@ -47,6 +49,26 @@ public class EmployeeDao {
         } else {
             return 0;
         }
+    }
+
+    public int deleteEmployeeInfo(int id){
+        EntityManager manager = emf.createEntityManager();
+        EntityTransaction tran = manager.getTransaction();
+        Employee emp = manager.find(Employee.class, id);
+        if(emp != null){
+            tran.begin();
+            manager.remove(emp);
+            tran.commit();
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public List<Employee> getAllEmployee(){
+        EntityManager manager = emf.createEntityManager();
+        Query qry = manager.createQuery("select e from Employee e");
+        return qry.getResultList();
     }
 
 }

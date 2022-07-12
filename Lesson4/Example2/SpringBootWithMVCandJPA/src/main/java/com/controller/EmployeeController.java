@@ -42,4 +42,25 @@ public class EmployeeController {
         request.setAttribute("msg", result);
         return "index";
     }
+
+    @RequestMapping(value = "deleteEmployee", method = RequestMethod.GET)
+    public String deleteEmployee(){
+        return "deleteEmployee";
+    }
+
+    @RequestMapping(value = "deleteEmployee", method = RequestMethod.POST)
+    public String deleteEmployee(HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("employee_id"));
+        String result = employeeService.deleteEmployeeRecord(id);
+        request.setAttribute("msg", result);
+        return "index";
+    }
+
+    @RequestMapping(value = "getAllEmployees", method = RequestMethod.GET)
+    public String getAllEmployees(HttpServletRequest request){
+        System.out.println("hello world");
+        request.setAttribute("allEmployees", employeeService.getAllEmployees());
+        System.out.println("hello world");
+        return "allEmployees";
+    }
 }
