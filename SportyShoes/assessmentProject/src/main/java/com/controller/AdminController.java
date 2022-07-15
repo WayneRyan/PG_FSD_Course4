@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class LoginController {
+public class AdminController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    ProductService productService;
 
     @RequestMapping(value = "checkCredentials", method = RequestMethod.POST)
     public String checkCredentials(HttpServletRequest request){
@@ -29,12 +31,20 @@ public class LoginController {
     }
 
     @RequestMapping(value = "manageUsers", method = RequestMethod.GET)
-    public String manageUsers(){
+    public String manageUsers(HttpServletRequest request){
+        request.getSession().setAttribute("listOfUsers", userService.getAllUsers());
+        return "userManagement";
+    }
+
+    @RequestMapping(value = "searchUsers", method = RequestMethod.POST)
+    public String searchUsers(HttpServletRequest request){
+        request.getSession().setAttribute( "listOfUsers", userService.getFilteredUsers(request.getParameter("filterText")));
         return "userManagement";
     }
 
     @RequestMapping(value = "manageProducts", method = RequestMethod.GET)
-    public String manageProducts(){
+    public String manageProducts(HttpServletRequest request){
+        request.getSession().setAttribute( "listOfProducts", userService.getFilteredUsers(request.getParameter("filterText")));
         return "productManagement";
     }
 
