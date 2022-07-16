@@ -9,5 +9,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class RunApplication {
     public static void main(String[] args) {
         SpringApplication.run(RunApplication.class, args);
+        System.out.println("System up and running");
     }
 }

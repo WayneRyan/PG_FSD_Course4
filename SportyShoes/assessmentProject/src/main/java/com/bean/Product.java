@@ -11,6 +11,7 @@ public class Product {
     private String description;
     private String name;
     @ManyToOne
+    @JoinColumn(name="category")
     private Category category;
     private int price;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
