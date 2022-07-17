@@ -2,9 +2,11 @@ package com.controller;
 
 import com.bean.Category;
 import com.bean.Product;
+import com.bean.Purchase;
 import com.bean.User;
 import com.service.CategoryService;
 import com.service.ProductService;
+import com.service.PurchaseService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,6 +28,8 @@ public class AdminController {
     ProductService productService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    PurchaseService purchaseService;
 
     @RequestMapping(value = "checkCredentials", method = RequestMethod.POST)
     public String checkCredentials(HttpServletRequest request) {
@@ -72,7 +79,23 @@ public class AdminController {
     }
 
     @RequestMapping(value = "purchaseReport", method = RequestMethod.GET)
-    public String purchaseReport() {
+    public String purchaseReport(HttpServletRequest request) {
+        request.getSession().setAttribute("listOfCategories", categoryService.getAllCategories());
+        return "purchaseReport";
+    }
+
+    @RequestMapping(value = "purchaseReport", method = RequestMethod.POST)
+    public String purchaseReportPost(HttpServletRequest request) {
+        List<Purchase> filteredPurchases = new ArrayList<>();
+        try {
+            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("startDate"));
+            Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("endDate"));
+            Category category = categoryService.getCategory(Integer.parseInt(request.getParameter("selectedCategory")));
+            filteredPurchases = purchaseService.getFilteredPurchases(startDate, endDate, category);
+        } catch (Exception e) {
+        }
+        request.getSession().setAttribute("listOfCategories", categoryService.getAllCategories());
+        request.getSession().setAttribute("filteredPurchases", filteredPurchases);
         return "purchaseReport";
     }
 
