@@ -13,9 +13,15 @@ public class ProductService {
     @Autowired
     ProductDao productDao;
 
-    public List<Product> getAllProducts() { return productDao.getAllProducts();}
+    public List<Product> getAllProducts() {
+        return productDao.getAllProducts();
+    }
 
-    public Product getProduct(int id) { return productDao.getProduct( id); }
+    public Product getProduct(int id) {
+        return productDao.getProduct(id);
+    }
 
-    public boolean update(Product selectedProduct) { return productDao.update(selectedProduct);}
+    public boolean update(Product selectedProduct) {
+        return productDao.update(selectedProduct);
+    }
 }

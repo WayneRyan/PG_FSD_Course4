@@ -1,13 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="core"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="en_US" />
+<fmt:setLocale value="en_US"/>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Sporty Shoes Product Management</title>
 </head>
 <body>
+<a href="homeScreen">home</a>
 <h2>Welcome to Sporty Shoes Product Management</h2>
 <form action="selectProduct" method="get">
     <select name="selectedProduct">

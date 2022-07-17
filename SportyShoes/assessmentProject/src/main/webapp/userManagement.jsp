@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="core"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Sporty Shoes User Management</title>
 </head>
 <body>
+<a href="homeScreen">home</a>
 <h2>Welcome to Sporty Shoes User Management</h2>
 <form action="searchUsers" method="post">
     <label>Filter by name: </label><input type="text" name="filterText"><input type="submit">

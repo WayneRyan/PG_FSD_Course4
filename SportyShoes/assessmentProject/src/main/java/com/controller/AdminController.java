@@ -25,7 +25,7 @@ public class AdminController {
     CategoryService categoryService;
 
     @RequestMapping(value = "checkCredentials", method = RequestMethod.POST)
-    public String checkCredentials(HttpServletRequest request){
+    public String checkCredentials(HttpServletRequest request) {
         User user = userService.checkCredentials(request.getParameter("user_name"), request.getParameter("password"));
         if (user != null) {
             request.getSession().setAttribute("login", user);
@@ -37,23 +37,34 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "index";
+    }
+
+    @RequestMapping(value = "homeScreen", method = RequestMethod.GET)
+    public String homeScreen() {
+        return "homeScreen";
+    }
+
     @RequestMapping(value = "manageUsers", method = RequestMethod.GET)
-    public String manageUsers(HttpServletRequest request){
+    public String manageUsers(HttpServletRequest request) {
         request.getSession().setAttribute("listOfUsers", userService.getAllUsers());
         return "userManagement";
     }
 
     @RequestMapping(value = "searchUsers", method = RequestMethod.POST)
-    public String searchUsers(HttpServletRequest request){
-        request.getSession().setAttribute( "listOfUsers", userService.getFilteredUsers(request.getParameter("filterText")));
+    public String searchUsers(HttpServletRequest request) {
+        request.getSession().setAttribute("listOfUsers", userService.getFilteredUsers(request.getParameter("filterText")));
         return "userManagement";
     }
 
     @RequestMapping(value = "manageProducts", method = RequestMethod.GET)
-    public String manageProducts(HttpServletRequest request){
+    public String manageProducts(HttpServletRequest request) {
         List<Product> productList = productService.getAllProducts();
-        request.getSession().setAttribute( "listOfProducts", productList);
-        request.getSession().setAttribute( "listOfCategories", categoryService.getAllCategories());
+        request.getSession().setAttribute("listOfProducts", productList);
+        request.getSession().setAttribute("listOfCategories", categoryService.getAllCategories());
         if (productList.size() > 0) {
             request.getSession().setAttribute("selectedProduct", productList.get(0));
         }
@@ -61,7 +72,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "purchaseReport", method = RequestMethod.GET)
-    public String purchaseReport(){
+    public String purchaseReport() {
         return "purchaseReport";
     }
 

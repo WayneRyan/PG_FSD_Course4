@@ -14,14 +14,14 @@ public class UserService {
 
     public User checkCredentials(String userName, String password) {
         User user = userDao.getUser(userName);
-        if (user != null && user.getPassword().equals(password) && user.isIs_admin()){
+        if (user != null && user.getPassword().equals(password) && user.isIs_admin()) {
             return user;
         } else {
             return null;
         }
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
